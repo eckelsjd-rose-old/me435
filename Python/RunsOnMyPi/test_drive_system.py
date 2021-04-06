@@ -37,14 +37,14 @@ def run_test_drive_system():
     #        RE-commenting out the previous test to reduce the testing.
     # -------------------------------------------------------------------------
 
-    run_test_go_stop(robot)
+    # run_test_go_stop(robot)
     # run_test_go_straight_for_seconds(robot)
     # run_test_go_straight_for_inches(robot)
     # run_test_spin_in_place_for_seconds(robot)
-    # run_test_spin_in_place_for_degrees(robot)
+    # run_test_spin_in_place_for_degrees(robot) 
     # run_test_turn_for_seconds(robot)
     # run_test_turn_for_degrees(robot)
-    # run_test_draw_polygon(robot)
+    run_test_draw_polygon(robot)
 
 
 def run_test_go_stop(robot):
@@ -98,9 +98,10 @@ def run_test_go_straight_for_seconds(robot):
         input("Press the ENTER key when ready for the robot to start moving.")
 
         # -------------------------------------------------------------------------
-        # TODO: 4. Call the  go_straight_for_seconds  method of the   drive_system
+        # DONE: 4. Call the  go_straight_for_seconds  method of the   drive_system
         #  of the robot, sending it the input  seconds  and  speed.
         # -------------------------------------------------------------------------
+        robot.drive_system.go_staight_for_seconds(seconds,speed=speed)
 
 
 def run_test_go_straight_for_inches(robot):
@@ -121,10 +122,11 @@ def run_test_go_straight_for_inches(robot):
         input("Press the ENTER key when ready for the robot to start moving.")
 
         # -------------------------------------------------------------------------
-        # TODO: 5. Call the  go_straight_for_inches  method of the   drive_system
+        # DONE: 5. Call the  go_straight_for_inches  method of the   drive_system
         #  of the robot, sending it the input  inches  and  speed.
         #  (The go_straight_for_inches method uses the same speed for both wheels.)
         # -------------------------------------------------------------------------
+        robot.drive_system.go_straight_for_inches(inches,speed=speed)
 
 
 def run_test_spin_in_place_for_seconds(robot):
@@ -145,10 +147,11 @@ def run_test_spin_in_place_for_seconds(robot):
         input("Press the ENTER key when ready for the robot to start moving.")
 
         # -------------------------------------------------------------------------
-        # TODO: 6. Call the  spin_in_place_for_seconds  method of the   drive_system
+        # DONE: 6. Call the  spin_in_place_for_seconds  method of the   drive_system
         #  of the robot, sending it the input  seconds  and  speed.
         #  (The go_straight_for_inches method uses the same speed for both wheels.)
         # -------------------------------------------------------------------------
+        robot.drive_system.spin_in_place_for_seconds(seconds,speed=speed)
 
 
 def run_test_spin_in_place_for_degrees(robot):
@@ -167,9 +170,10 @@ def run_test_spin_in_place_for_degrees(robot):
         input("Press the ENTER key when ready for the robot to start moving.")
 
         # -------------------------------------------------------------------------
-        # TODO: 7. Call the  spin_in_place_for_degrees  method of the   drive_system
+        # DONE: 7. Call the  spin_in_place_for_degrees  method of the   drive_system
         #  of the robot, sending it the input  degrees  and  speed.
         # -------------------------------------------------------------------------
+        robot.drive_system.spin_in_place_for_degrees(degrees,speed=speed)
 
 
 def run_test_turn_for_seconds(robot):
@@ -188,9 +192,10 @@ def run_test_turn_for_seconds(robot):
         input("Press the ENTER key when ready for the robot to start moving.")
 
         # -------------------------------------------------------------------------
-        # TODO: 8. Call the  turn_for_seconds  method of the   drive_system
+        # DONE: 8. Call the  turn_for_seconds  method of the   drive_system
         #  of the robot, sending it the input  degrees  and  seconds.
         # -------------------------------------------------------------------------
+        robot.drive_system.turn_for_seconds(seconds,speed=speed)
 
 
 def run_test_turn_for_degrees(robot):
@@ -209,9 +214,10 @@ def run_test_turn_for_degrees(robot):
         input("Press the ENTER key when ready for the robot to start moving.")
 
         # -------------------------------------------------------------------------
-        # TODO: 9. Call the  turn_for_degrees  method of the   drive_system
+        # : 9. Call the  turn_for_degrees  method of the   drive_system
         #  of the robot, sending it the input  degrees  and  speed.
         # -------------------------------------------------------------------------
+        robot.drive_system.turn_for_degrees(degrees,speed=speed)
 
 
 def run_test_draw_polygon(robot):
@@ -244,6 +250,12 @@ def run_test_draw_polygon(robot):
         #  methods of the   drive_system as needed to draw the polygon,
         #  sending the inputs degrees and speed or inches and speed as appropriate.
         # -------------------------------------------------------------------------
+        speed = abs(speed)
+        inches = abs(inches)
+        
+        for _ in range(abs(sides)):
+            robot.drive_system.go_straight_for_inches(inches,speed=speed)
+            robot.drive_system.spin_in_place_for_degrees(degrees,speed=speed) # CCW if sides<0
 
 
 

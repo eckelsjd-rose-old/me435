@@ -46,34 +46,75 @@ class DriveSystem:
         self.right_motor.turn_off()
 
     def go_staight_for_seconds(self,seconds,speed=50):
-        pass
+        self.go(speed,speed)
+        time.sleep(seconds)
+        self.stop()
 
     def go_straight_for_inches(self,inches,speed=50):
-        pass
+        self.go(speed,speed)
+
+        if speed < 0:
+            speed = -speed
+        if inches < 0:
+            inches = -inches
+
+        speed_ips = 0.00004*(speed**3) - 0.0087*(speed**2) + 0.7524*(speed) - 10.942 # use Excel data to convert duty cycle to inches/sec
+        seconds = inches / speed_ips
+        time.sleep(seconds)
+        self.stop()
 
     def spin_in_place_for_seconds(self,seconds,speed=50):
-        pass
+        # left turn (ccw) = negative
+       self.go(speed,-speed)
+       time.sleep(seconds)
+       self.stop()
 
     def spin_in_place_for_degrees(self,degrees,speed=50):
-        pass
+        speed = abs(speed)
+        if degrees > 0:
+            self.go(speed,-speed) # positive = cw
+        elif degrees < 0:
+            self.go(-speed,speed) # negative = ccw
+        else:
+            pass
+
+        deg_s = 2.009*speed - 62.752 # curve fit PWM to deg/s
+        seconds = abs(degrees) / deg_s
+        time.sleep(seconds)
+        self.stop()
 
     def turn_for_seconds(self,seconds,speed):
-        pass
+        # negative turns left
+        if speed < 0:
+            self.go(0,abs(speed))
+        # positive turns right
+        elif speed > 0:
+            self.go(abs(speed),0)
+        else:
+            pass
+        time.sleep(seconds)
+        self.stop()
 
     def turn_for_degrees(self,degrees,speed):
-        pass
+        # negative degrees turns left
+        speed = abs(speed)
+        if degrees < 0:
+            self.go(0,abs(speed))
+        elif degrees > 0:
+            self.go(abs(speed),0)
+        else:
+            pass
+
+        deg_s = 0.6204*speed - 11.194 # curve fit PWM to deg_s
+        seconds = abs(degrees) / deg_s
+        time.sleep(seconds)
+        self.stop()
 
 
         
 
 # Testing for development
 if __name__ == '__main__':
-    drive_system = DriveSystem()
-    drive_system.go(50,50)
-    time.sleep(2)
-    drive_system.go(-50,-50)
-    time.sleep(2)
-    drive_system.go(0,0)
 
 
     print("Goodbye")
