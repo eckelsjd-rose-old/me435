@@ -12,15 +12,18 @@ MDBoxLayout:
 
         MDRectangleFlatButton:
             text: "Decrement"
+            on_press: app.change_counter(-1)
 
         MDRectangleFlatButton:
             text: "Reset"
+            on_press: app.set_counter(0)
 
         MDRectangleFlatButton:
             text: "Increment"
+            on_press: app.change_counter(+1)
 
     MDLabel:
-        text: "Count = 0"
+        text: app.counter_text
         halign: "center"
 
     Widget
