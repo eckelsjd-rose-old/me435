@@ -12,7 +12,7 @@ class HelloButtonApp(MDApp):
         self.counter = 0
         self.mqtt_client = mqtt_helper.MqttClient()
         self.mqtt_client.callback = lambda message_type,payload: self.mqtt_callback(message_type,payload)
-        self.mqtt_client.connect(subscription_topic_name="eckelsjd/forComputer", publish_topic_name="eckelsjd/forPi")
+        self.mqtt_client.connect(subscription_topic_name="eckelsjd/forPi", publish_topic_name="eckelsjd/forComputer")
 
     def mqtt_callback(self,message_type,payload):
         print("MQTT messsage_type", message_type)
