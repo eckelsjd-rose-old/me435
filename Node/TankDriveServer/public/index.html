@@ -15,8 +15,49 @@
     <a class="navbar-brand" href="#">Tank Drive Server</a>
   </nav>
   <div id="mainPage" class="container page-container">
+
+    <hr>
+    <h1>Servo 11: Camera Tilt Servo</h1>
+    <div class="row">
+      <div class="col">
+        <input type="range" min="500" max="2500" value="1500" class="w-100" id="servo11">
+      </div>
+    </div>
+
+    <hr>
+    <h1>Servo 12: Arm Link 1 Servo</h1>
+    <div class="row">
+      <div class="col">
+        <input type="range" min="500" max="2500" value="1500" class="w-100" id="servo12">
+      </div>
+    </div>
+
+    <hr>
+    <h1>Servo 13: Arm Link 2 Servo</h1>
+    <div class="row">
+      <div class="col">
+        <input type="range" min="500" max="2500" value="1500" class="w-100" id="servo13">
+      </div>
+    </div>
+
+    <hr>
+    <h1>Servo 14: Arm Link 3 Servo</h1>
+    <div class="row">
+      <div class="col">
+        <input type="range" min="500" max="2500" value="1500" class="w-100" id="servo14">
+      </div>
+    </div>
+
+    <hr>
+    <h1>Servo 15: Gripper Servo</h1>
+    <div class="row">
+      <div class="col">
+        <input type="range" min="500" max="2500" value="1500" class="w-100" id="servo15">
+      </div>
+    </div>
+
     <div id="sliderContainer">
-      <input type="range" min="0" max="255" value="127" class="slider" id="baseSpeed">
+      <input type="range" min="0" max="100" value="50" class="slider" id="baseSpeed">
     </div>
     <div id="driveGrid">
       <button type="button" data-left-multiplier="0.5" data-right-multiplier="1.0" class="driveButton btn btn-block btn-outline-primary">

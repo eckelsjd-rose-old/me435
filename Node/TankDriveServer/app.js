@@ -23,4 +23,29 @@ app.get("/api/motor/stop",(req,res) => {
     });
 });
 
+app.get("/api/servo/arm_pw/:jointNumber/:pulseWidth",(req,res) => {
+    const jointNumber = parseInt(req.params.jointNumber);
+    const pulseWidth = parseInt(req.params.pulseWidth);
+    robot.armServos.setPulseWidth(jointNumber,pulseWidth);
+    res.json({
+        status: "ok"
+    });
+});
+
+app.get("/api/servo/gripper_pw/:pulseWidth",(req,res) => {
+    const pulseWidth = parseInt(req.params.pulseWidth);
+    robot.gripperServo.setPulseWidth(pulseWidth);
+    res.json({
+        status: "ok"
+    });
+});
+
+app.get("/api/servo/camera_pw/:pulseWidth",(req,res) => {
+    const pulseWidth = parseInt(req.params.pulseWidth);
+    robot.cameraServo.setPulseWidth(pulseWidth);
+    res.json({
+        status: "ok"
+    });
+});
+
 app.listen(3000);
