@@ -1,6 +1,7 @@
 from kivymd.app import MDApp
 from kivy.core.window import Window
 from kivy.properties import StringProperty
+import mqtt_helper
 
 class HelloButtonApp(MDApp):
     
@@ -9,6 +10,7 @@ class HelloButtonApp(MDApp):
     def __init__(self,**kwargs):
         super(HelloButtonApp, self).__init__(**kwargs)
         self.counter = 0
+        self.mqtt_client = mqtt_helper.MqttClient()
 
     def set_counter(self, value):
         self.counter = value
