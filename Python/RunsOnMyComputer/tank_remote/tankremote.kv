@@ -1,0 +1,124 @@
+MDBoxLayout:
+    orientation: "vertical"
+
+    MDToolbar:
+        title: "Tank Remote"
+
+    MDBottomNavigation:
+        panel_color: .2, .2, .2, 1
+
+        MDBottomNavigationItem:
+            name: 'screen 1'
+            text: 'Drive'
+            icon: 'truck'
+
+            MDFloatLayout:
+                MDFloatingActionButton:
+                    icon: 'arrow-up'
+                    pos_hint: {'center_y': 0.7,'center_x':0.5}
+                    on_press: app.mqtt_client.send_message("motor/go", [100,100])
+                    on_release: app.mqtt_client.send_message("motor/stop")
+
+                MDFloatingActionButton:
+                    icon: 'arrow-down'
+                    pos_hint: {'center_y': 0.3,'center_x':0.5}
+                    on_press: app.mqtt_client.send_message("motor/go", [-100,-100])
+                    on_release: app.mqtt_client.send_message("motor/stop")
+
+                MDFloatingActionButton:
+                    icon: 'arrow-left'
+                    pos_hint: {'center_y': 0.5,'center_x':0.3}
+                    on_press: app.mqtt_client.send_message("motor/go", [-100,100])
+                    on_release: app.mqtt_client.send_message("motor/stop")
+
+                MDFloatingActionButton:
+                    icon: 'arrow-right'
+                    pos_hint: {'center_y': 0.5,'center_x':0.7}
+                    on_press: app.mqtt_client.send_message("motor/go", [100,-100])
+                    on_release: app.mqtt_client.send_message("motor/stop")
+
+        MDBottomNavigationItem:
+            name: 'screen 2'
+            text: 'Servos'
+            icon: 'wiper'
+
+            MDBoxLayout:
+                orientation: "vertical"
+                # adaptive_height: True
+                # pos_hint: {"center_y":0.5}
+                padding: 30
+
+                MDLabel:
+                    text: '11: Camera Servo'
+                    halign: 'left'
+
+                MDSlider:
+                    min: 0
+                    max: 45
+                    value: 10
+                    on_touch_up: app.mqtt_client.send_message("servo/11",round(self.value)) # on value
+
+                MDLabel:
+                    text: '12: Joint 1'
+                    halign: 'left'
+
+                MDSlider:
+                    min: -90
+                    max: 45
+                    value: 0
+                    on_touch_up: app.mqtt_client.send_message("servo/12",round(self.value)) # on value
+
+                MDLabel:
+                    text: '13: Joint 2'
+                    halign: 'left'
+
+                MDSlider:
+                    min: -90
+                    max: 90
+                    value: 0
+                    on_touch_up: app.mqtt_client.send_message("servo/13",round(self.value)) # on value
+
+                MDLabel:
+                    text: '14: Joint 3'
+                    halign: 'left'
+
+                MDSlider:
+                    min: -90
+                    max: 90
+                    value: 0
+                    on_touch_up: app.mqtt_client.send_message("servo/14",round(self.value)) # on value
+
+                MDLabel:
+                    text: '15: Gripper'
+                    halign: 'left'
+
+                MDSlider:
+                    min: 0
+                    max: 1.5
+                    value: 0.5 # inches
+                    on_touch_up: app.mqtt_client.send_message("servo/15",round(self.value,2)) # on value
+
+        MDBottomNavigationItem:
+            name: 'screen 3'
+            text: 'Sensors'
+            icon: 'gauge'
+
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: 30
+
+                MDLabel:
+                    text: 'Ultrasonic'
+                    halign: 'left' 
+
+                MDLabel:
+                    text: app.ultrasonic_text
+                    halign: 'center' 
+
+                MDLabel:
+                    text: 'Line sensor'
+                    halign: 'left' 
+
+                MDLabel:
+                    text: app.line_sensor_text
+                    halign: 'center' 
