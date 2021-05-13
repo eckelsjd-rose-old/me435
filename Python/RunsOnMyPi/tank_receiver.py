@@ -29,8 +29,10 @@ class TankReceiver:
 if __name__ == "__main__":
     receiver = TankReceiver()
     while True:
-        color = receiver.robot.line.get_middle_value()
+        left = receiver.robot.line.get_left_value()
+        middle = receiver.robot.line.get_middle_value()
+        right = receiver.robot.line.get_right_value()
         distance = receiver.robot.ultrasonic.get_distance()
         receiver.mqtt_client.send_message('sensor/ultrasonic',distance)
-        receiver.mqtt_client.send_message('sensor/line_sensor',color)
-        time.sleep(2)
+        receiver.mqtt_client.send_message('sensor/line_sensor',[left, middle, right])
+        time.sleep(0.2)

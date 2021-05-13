@@ -26,6 +26,9 @@ class LineSensors:
     def get_middle_value(self):
         return self.middle_line.value
 
+    def get_right_value(self):
+        return self.right_line.value
+
 # Testing for development
 if __name__ == '__main__':
     print("Goodbye")
