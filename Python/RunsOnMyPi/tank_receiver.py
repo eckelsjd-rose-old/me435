@@ -35,4 +35,4 @@ if __name__ == "__main__":
         distance = receiver.robot.ultrasonic.get_distance()
         receiver.mqtt_client.send_message('sensor/ultrasonic',distance)
         receiver.mqtt_client.send_message('sensor/line_sensor',[left, middle, right])
-        time.sleep(0.2)
+        time.sleep(0.1)
