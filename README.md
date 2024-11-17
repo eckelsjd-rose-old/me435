@@ -1,8 +1,8 @@
-# ME435-Personal-Repo-Template
-Your 1 and only private repo for all your ME435/CSSE435 code.
+# Robotics engineering (ME435)
+Class code for all robotics engineering projects (Spring 2021)
 
-Test commit.
-
-Test from pi400.
-
-Test from tank pi.
+## Projects
+- Serial communication with plate loader robot
+- Raspberry pi tank controller
+- Interfacing with node and firebase for remote control
+- Chess robot (see the [repo](https://github.com/eckelsjd/ChessRobot))
